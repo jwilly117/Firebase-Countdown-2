@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   
     <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
 
 </head>
 <body>
@@ -24,7 +24,7 @@
         <!-- Row for Jumbotron -->
         <div class="row">
             <div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
+                <h1 class="display-4">Click To Countdown</h1>
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
                 <hr class="my-4">
                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
@@ -45,15 +45,18 @@
             
         </div>
 
+        <hr>
         <!-- Row to tell how many people are watching -->
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
 
             </div>
-            <div class="col-md-6">
-                People are watching you click!
+            <div class="col-md-8"><h3>
+                <span id="numWatchers"></span> People are watching you click!
+            </h3>
+
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 
             </div>
         </div>
