@@ -46,3 +46,72 @@ connectionsRef.on("value", function(snapshot){
     // The number of online users is the number of children in the connections list
     $("#numWatchers").text(snapshot.numChildren());
 });
+
+
+// /////////////////////////////////////////////////
+// CRITICAL BLOCK for click countdown
+// /////////////////////////////////////////////////
+
+// Set the initial Counter
+var initialValue = 100;
+var clickCounter = initialValue;
+
+// At page load....
+database.ref("/clicks").on("value", function(snapshot){
+    // Print the local data to the console.
+    console.log(snapshot.val());
+
+    // Change the HTML to reflect the local value in firebase
+    clickCounter = snapshot.val().clickCount;
+
+    // Log the value of the clickCounter
+    console.log(clickCounter);
+
+    // Change the HTML to reflect the local value in firebase
+    $("#click-value").text(clickCounter);
+
+}, function(err){
+    console.log("The read failed: " + err.code);
+});
+
+///////////////////////////////////////////////////////////////
+// Whenever a user clicks a button
+////////////////////////////////////
+$("#click-button").on("click", function(){
+
+    // Reduce the counter by 1
+    clickCounter--;
+
+    // Alert the user and reset the counter
+    if (clickCounter === 0){
+        alert("You made it to zero");
+        clickCounter = initialValue;
+    }
+
+    // save new value in firebase
+    database.ref("/clicks").set({
+        clickCount: clickCounter
+    });
+
+    // Log the value of the clickCounter
+    console.log(clickCounter);
+})
+
+// Now code out what happens if restart is pressed
+$("#restart").on("click", function(){
+
+    // set clickcounter back to initial value
+    clickCounter = initialValue;
+
+    // database ref
+    database.ref("/clicks").set({
+        clickCount: clickCounter
+    });
+
+    //Log the new local count
+    console.log("Count Reset to: " + clickCounter);
+
+    // set the click value text to the value of clickcounter
+    $("#click-value").text(clickCounter);
+
+})
