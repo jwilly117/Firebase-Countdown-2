@@ -70,6 +70,10 @@ database.ref("/clicks").on("value", function(snapshot){
     // Change the HTML to reflect the local value in firebase
     $("#click-value").text(clickCounter);
 
+    // Make the value of the progress bar change
+    $("#progress").css("width", (clickCounter + "%"));
+
+
 }, function(err){
     console.log("The read failed: " + err.code);
 });
